@@ -39,8 +39,9 @@ function upload(params) {
   return new Promise(resolve => {
     s3.upload(params, (err, data) => {
       if (err) core.error(err);
-      core.info(`uploaded - ${data.Key}`);
-      core.info(`located - ${data.Location}`);
+      core.info(${data})
+      //core.info(`uploaded - ${data.Key}`);
+      //core.info(`located - ${data.Location}`);
       resolve(data.Location);
     });
   });
@@ -57,7 +58,6 @@ function run() {
         ACL: 'public-read',
         Body: fileStream,
         Key: bucketPath,
-        Region: REGION,
         ContentType: lookup(p.path) || 'text/plain'
       };
       return upload(params);
