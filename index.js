@@ -57,6 +57,7 @@ function run() {
         ACL: 'public-read',
         Body: fileStream,
         Key: bucketPath,
+        Region: REGION,
         ContentType: lookup(p.path) || 'text/plain'
       };
       return upload(params);
